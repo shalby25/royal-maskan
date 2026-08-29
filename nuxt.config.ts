@@ -1,3 +1,5 @@
+const deployBase = process.env.NUXT_APP_BASE_URL || '/'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
@@ -13,6 +15,8 @@ export default defineNuxtConfig({
     name: 'Al Maskan Al Malaky'
   },
   app: {
+    // GitHub Pages sets this to /royal-maskan/. Namecheap leaves it as /.
+    baseURL: deployBase,
     // Keep generated assets inside /tools so WordPress continues to own the domain root.
     buildAssetsDir: '/tools/_nuxt/',
     head: {
@@ -22,8 +26,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#13261f' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/tools/images/royal-maskan/favicon.png' },
-        { rel: 'apple-touch-icon', href: '/tools/images/royal-maskan/favicon.png' }
+        { rel: 'icon', type: 'image/png', href: `${deployBase}tools/images/royal-maskan/favicon.png` },
+        { rel: 'apple-touch-icon', href: `${deployBase}tools/images/royal-maskan/favicon.png` }
       ]
     }
   },

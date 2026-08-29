@@ -2,6 +2,7 @@
 import type { CalculatorDefinition } from '~/data/calculators'
 import { calculators } from '~/data/calculators'
 const props = defineProps<{ calculator: CalculatorDefinition }>()
+const sitePath = useSitePath
 useCalculatorSeo(props.calculator)
 
 const relatedCalculators = computed(() =>
@@ -20,7 +21,7 @@ const relatedCalculators = computed(() =>
           <p class="lede">{{ calculator.intro }}</p>
           <a class="hero-site-link" href="https://royalmaskan.com/">Built by Royal Maskan engineers <span>↗</span></a>
         </div>
-        <figure class="hero-photo"><img :src="calculator.image" :alt="calculator.imageAlt" width="1200" height="900" fetchpriority="high"><figcaption>Royal Maskan · Crafting Royal Living</figcaption></figure>
+        <figure class="hero-photo"><img :src="sitePath(calculator.image)" :alt="calculator.imageAlt" width="1200" height="900" fetchpriority="high"><figcaption>Royal Maskan · Crafting Royal Living</figcaption></figure>
       </div>
     </section>
     <div class="shell content-stack">
@@ -46,7 +47,7 @@ const relatedCalculators = computed(() =>
         <h2>Explore our other cost calculators</h2>
         <div class="tool-grid">
           <NuxtLink v-for="item in relatedCalculators" :key="item.key" :to="item.path" class="tool-card">
-            <img :src="item.image" :alt="item.imageAlt" loading="lazy" width="720" height="480"><div class="tool-card-body"><span>{{ item.eyebrow }}</span><strong>{{ item.title }}</strong><p>{{ item.description }}</p></div>
+            <img :src="sitePath(item.image)" :alt="item.imageAlt" loading="lazy" width="720" height="480"><div class="tool-card-body"><span>{{ item.eyebrow }}</span><strong>{{ item.title }}</strong><p>{{ item.description }}</p></div>
           </NuxtLink>
         </div>
       </section>

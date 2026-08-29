@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
 const route = useRoute()
+const sitePath = useSitePath
 const isArabic = computed(() => route.path.startsWith('/ar/'))
 const switchUrl = computed(() => {
   let path = route.path
@@ -25,11 +26,11 @@ const switchUrl = computed(() => {
     <header class="site-header">
       <div class="shell nav">
         <a class="brand" href="https://royalmaskan.com/" aria-label="Al Maskan Al Malaky home">
-          <img class="brand-logo" src="/tools/images/royal-maskan/royal-maskan-logo.png" alt="Royal Maskan - المسكن الملكي" width="190" height="51">
+          <img class="brand-logo" :src="sitePath('/tools/images/royal-maskan/royal-maskan-logo.png')" alt="Royal Maskan - المسكن الملكي" width="190" height="51">
         </a>
         <nav aria-label="Main navigation">
-          <a :href="isArabic ? '/ar/حاسبات-تكلفة-البناء/' : '/tools/'">{{ isArabic ? 'حاسبات التكلفة' : 'Cost calculators' }}</a>
-          <a class="language-switch" :href="switchUrl" :hreflang="isArabic ? 'en' : 'ar'" :lang="isArabic ? 'en' : 'ar'">{{ isArabic ? 'English' : 'العربية' }}</a>
+          <a :href="sitePath(isArabic ? '/ar/حاسبات-تكلفة-البناء/' : '/tools/')">{{ isArabic ? 'حاسبات التكلفة' : 'Cost calculators' }}</a>
+          <a class="language-switch" :href="sitePath(switchUrl)" :hreflang="isArabic ? 'en' : 'ar'" :lang="isArabic ? 'en' : 'ar'">{{ isArabic ? 'English' : 'العربية' }}</a>
           <a class="header-site-cta" href="https://royalmaskan.com/">{{ isArabic ? 'اكتشف المسكن الملكي' : 'Explore Royal Maskan' }} <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
